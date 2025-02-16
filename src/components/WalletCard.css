@@ -1,0 +1,31 @@
+.wallet-card {
+    width: 400px;
+    background: transparent;
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+    
+  }
+  
+  .wallet-header {
+  
+  }
+  .wallet-info{
+    border-radius: 15px;
+    
+  }
+  .wallet-title{
+    padding: 0px;
+    margin-bottom:5px;
+  }
+  .tokens-list {
+    margin-top: 20px;
+  }
+  
+  .token-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #4a4a4a;
+  }

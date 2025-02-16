@@ -1,38 +1,328 @@
 .App {
   text-align: center;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.wallet-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 15px 18px;
+  width: 92%;
+  max-width: 390px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 8px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.wallet-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 6px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.wallet-info {
+  background: linear-gradient(135deg, rgba(253, 187, 45, 0.15), rgba(26, 42, 108, 0.15));
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 6px;
+  color: white;
+}
+
+.wallet-address {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.65rem;
+  background: rgba(26, 42, 108, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 4px 8px;
+  border-radius: 4px;
+  word-break: break-all;
+  position: relative;
+  overflow: hidden;
+  margin-top: 2px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 20px;
+}
+
+.wallet-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 5px;
+}
+
+.connect-button {
+  background: linear-gradient(45deg, #2196F3, #00BCD4);
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+  font-weight: 600;
+}
+
+.connect-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(45deg, #1E88E5, #00ACC1);
+}
+
+.connect-button:active {
+  transform: translateY(0);
+}
+
+.copy-icon {
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+.copy-icon:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.copied-tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  top: -30px;
+  right: 8px;
+  animation: fadeInOut 1.5s ease;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.wallet-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 6px 0;
+  width: 100%;
+}
+
+/* WalletCard için stiller */
+.wallet-card {
+  background: linear-gradient(135deg, rgba(26, 42, 108, 0.15), rgba(178, 31, 31, 0.15));
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.balance-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: white;
+}
+
+.balance-label {
+  font-size: 0.55rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
+  margin-bottom: 1px;
+}
+
+.balance-value {
+  font-size: 0.65rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* InheritanceForm için stiller */
+.inheritance-form {
+  background: linear-gradient(135deg, rgba(178, 31, 31, 0.15), rgba(253, 187, 45, 0.15));
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group {
+  margin-bottom: 2px;
+  text-align: left;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 1px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 3px 5px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(26, 42, 108, 0.2);
+  color: white;
+  font-size: 0.65rem;
+  box-sizing: border-box;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.4);
+  color: white;
+}
+
+.form-button {
+  background: linear-gradient(45deg, #2196F3, #00BCD4);
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+  margin-top: 2px;
+}
+
+.form-button:hover {
+  background: linear-gradient(45deg, #1E88E5, #00ACC1);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-button:active {
+  transform: translateY(0);
+}
+
+/* Token seçici için stiller */
+.token-selector {
+  margin-bottom: 2px;
+}
+
+.token-select {
+  width: 100%;
+  padding: 3px 5px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(26, 42, 108, 0.2);
+  color: white;
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.token-select:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.4);
+  color: white;
+}
+
+.token-select option {
+  background: rgba(26, 42, 108, 0.9);
+  color: white;
+}
+
+.balance-display {
+  background: rgba(26, 42, 108, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 4px 5px;
+  border-radius: 3px;
+  margin-top: 2px;
+}
+
+/* Form input number için özel stiller */
+.form-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.form-input[type="number"]::-webkit-outer-spin-button,
+.form-input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.masked-address {
+  font-family: 'Roboto Mono', monospace;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding: 0 20px 0 0;
+}
+
+/* Başlık için yeni stiller */
+.wallet-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(45deg, #fff, #b9b9b9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
